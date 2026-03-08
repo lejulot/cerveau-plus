@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 // ============================================================
 // CONFIG & DATA
 // ============================================================
-const ANTHROPIC_API = "https://api.anthropic.com/v1/messages";
+
 const MODEL = "claude-sonnet-4-20250514";
 
 const CATEGORIES = {
@@ -61,7 +61,7 @@ Réponds UNIQUEMENT en JSON valide sans markdown :
 {"message":"intro 2 phrases max","humeur_emoji":"emoji","conseil_jour":"conseil max 15 mots","plan":[{"heure":"09:00","type":"tache|pause","label":"nom court","duree":25,"emoji":"emoji","pourquoi":"raison max 8 mots"}],"taches_reportees":["tâche"],"mot_fin":"phrase motivante courte"}`;
 
 const callClaude = async (system, userMsg) => {
-  const res = await fetch(ANTHROPIC_API, {
+  const res = await fetch("/api/claude", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ model: MODEL, max_tokens: 1000, system, messages: [{ role: "user", content: userMsg }] })
